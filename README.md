@@ -1,4 +1,12 @@
-# SSH Brute-Force Detection using Linux Logs
+# SSH Brute-Force Detection using Linux Logs (SOC Lab)
+
+## Lab Environment
+
+- OS: Kali Linux
+- Logging: systemd (journalctl)
+- Attack Type: Simulated brute-force via SSH
+
+------------------------------------------------------------------------------------------------------------------------------------
 
 ## Objective
 Simulate and detect an SSH brute-force attack using system logs (`journalctl`) in a controlled lab environment.
@@ -18,6 +26,7 @@ Simulate and detect an SSH brute-force attack using system logs (`journalctl`) i
 Multiple failed SSH login attempts were generated using invalid credentials:
 
 ssh root@127.0.0.1
+
 ssh kali@127.0.0.1
 
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -44,9 +53,13 @@ Command: journalctl -u ssh | grep "Accepted password"
 ## Findings
 
 Attack Type: SSH Brute Force
+
 Attacker IP: 127.0.0.1
+
 Targeted Users: root, kali
+
 Total Failed Attempts: 33
+
 Successful Login Observed: Yes (user: kali)
 
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -72,6 +85,7 @@ A brute-force attack can be identified using:
 ## MITRE ATT&CK Mapping
 
 T1110 — Brute Force
+
 T1078 — Valid Accounts
 
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -79,29 +93,51 @@ T1078 — Valid Accounts
 ## Recommendations
 
 Disable root login (PermitRootLogin no)
+
 Implement account lockout policies
+
 Enable multi-factor authentication (MFA)
+
 Deploy fail2ban or similar tools
+
 Monitor authentication logs in SIEM
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
-## 📸 Screenshots
+## Screenshots
 
 ### 🔹 SSH Login Attempts
 
-![SSH Attempt](screenshots/1. ssh login attempt.png)
+[SSH Attempt] (screenshots/1. ssh login attempt.png)
 
 ### 🔹 Extracting Failed Logins
 
-![Failed Logs](screenshots/4. extracting only failed password logs.png)
+[Failed Logs] (screenshots/4. extracting only failed password logs.png)
 
 ### 🔹 Extracting IP & Count
 
-![IP Extraction](screenshots/5. extracting failed password count and attacker ip address.png)
+[IP Extraction] (screenshots/5. extracting failed password count and attacker ip address.png)
 
 ### 🔹 Successful Login Detection
 
-![Accepted Login](screenshots/6. extracting accepted passwords and failed attempted login users.png)
+[Accepted Login] (screenshots/6. extracting accepted passwords and failed attempted login users.png)
+
+------------------------------------------------------------------------------------------------------------------------------------
+## Key Takeaways
+
+- Learned how to detect brute-force attacks using logs
+- Understood SSH authentication patterns
+- Identified attacker IP from logs
+- Mapped attack to MITRE ATT&CK framework
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+## Skills Demonstrated
+
+- Log Analysis (Linux / journalctl)
+- Threat Detection
+- Brute Force Attack Analysis
+- Incident Investigation
+- MITRE ATT&CK Mapping
 
 ------------------------------------------------------------------------------------------------------------------------------------
